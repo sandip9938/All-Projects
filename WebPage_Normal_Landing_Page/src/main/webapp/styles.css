@@ -1,0 +1,157 @@
+/* General Styles */
+body {
+  background-color: #ffffff; /* Default background color (light mode) */
+  color: #000000; /* Default text color (light mode) */
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Hero Section */
+.hero {
+  background-color: #4285F4;
+  color: white;
+  text-align: center;
+  padding: 50px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  margin: 10px 0;
+  width: 200px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #34A853;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Job Listings */
+.job-listings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.job-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.job-card a {
+  color: #4285F4;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Form Styling */
+.login-form, .register-form {
+  width: 300px;
+  margin: 50px auto;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #34A853;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+header.dark-mode, footer.dark-mode {
+  background-color: #333;
+  color: #e0e0e0;
+}
+
+.hero.dark-mode {
+  background-color: #222;
+  color: #e0e0e0;
+}
+
+.job-listings.dark-mode {
+  background-color: #2b2b2b;
+}
+
+.job-card.dark-mode {
+  background-color: #333;
+  border: 1px solid #555;
+  color: #e0e0e0;
+}
+
+button.dark-mode {
+  background-color: #444;
+  color: #e0e0e0;
+}
+
+button.dark-mode:hover {
+  background-color: #888;
+  color: #e0e0e0;
+}
+
+/* Dark Mode Form Styling */
+.login-form.dark-mode,
+.register-form.dark-mode {
+  background-color: #444;
+  color: #e0e0e0;
+}
+
+.login-form.dark-mode input,
+.register-form.dark-mode input {
+  background-color: #555;
+  color: white;
+  border: 1px solid #666;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #434343, #000000); /* Gradient background */
+            color: rgb(240, 238, 234);
+            font-family: 'Roboto', sans-serif; /* Modern font */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background-color: rgba(53, 47, 47, 0.8); /* Semi-transparent background */
+            padding: 30px;
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
+            text-align: center; /* Center text */
+            width: 90%; /* Responsive width */
+            max-width: 400px; /* Max width for larger screens */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%; /* Full width input */
+            padding: 10px; /* Padding for input */
+            margin: 10px 0; /* Margin for input */
+            border: 2px solid rgb(182, 182, 223); /* Border for input */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #1a1a1a; /* Dark input background */
+            color: #e0e0e0; /* Light text color */
+            font-size: 18px; /* Font size for input */
+            transition: border-color 0.3s; /* Smooth border color transition */
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: rgb(182, 182, 223); /* Change border color on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px; /* Padding for button */
+            font-size: 18px; /* Font size for button */
+            color: #e0e0e0; /* Button text color */
+            background-color: #1a1a1a; /* Dark button background */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgb(182, 182, 223); /* Lighten on hover */
+            color: #212121; /* Dark text on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+    </style>
+</head>
+<body>
+    <form action="adminlogin" method="post">
+        <h2>Admin Login</h2> <!-- Title for the form -->
+        <label for="aname">Admin Id:</label><br>
+        <input type="text" id="aname" name="aname" placeholder="Enter Admin Id" required><br>
+        
+        <label for="apw">Password:</label><br>
+        <input type="password" id="apw" name="apw" placeholder="Enter Admin Password" required><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

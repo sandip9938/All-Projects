@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #434343, #000000); /* Gradient background */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Roboto', sans-serif; /* Modern sans-serif font */
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 3em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+        }
+
+        a {
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        button {
+            margin: 10px;
+            cursor: pointer;
+            background-color: #1a1a1a; /* Darker button background */
+            color: #e0e0e0; /* Light button text */
+            border: none; /* Remove default border */
+            border-radius: 8px; /* Rounded corners */
+            padding: 15px 30px; /* Increased padding */
+            font-size: 24px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+        }
+
+        button:hover {
+            background-color: rgb(182, 182, 223);
+            color: #212121;
+            transform: translateY(-2px); /* Move up on hover */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); /* Enhanced shadow on hover */
+        }
+
+        button:active {
+            transform: translateY(0); /* Reset on click */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Reset shadow on click */
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Our Employee Management Portal</h1>
+    <a href="admin.html"><button>Admin Login</button></a> 
+    <a href="employeelog.html"><button>Employee Login</button></a>
+</body>
+</html>
+

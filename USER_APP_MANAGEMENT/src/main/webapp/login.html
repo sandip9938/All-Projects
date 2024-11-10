@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page with Dark/Light Mode Switch</title>
+<style>
+    /* Base light mode colors */
+    :root {
+        --background: #ffffff;
+        --text-color: #000000;
+        --input-bg: #f0f0f0;
+        --button-bg: #6200ea;
+        --button-text: #ffffff;
+        --link-color: #6200ea;
+    }
+
+    /* Dark mode colors */
+    .dark-mode {
+        --background: #121212;
+        --text-color: #ffffff;
+        --input-bg: #333333;
+    }
+
+    /* General styles */
+    body {
+        background-color: var(--background);
+        color: var(--text-color);
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        width: 100%;
+        background-color: var(--background);
+        transition: background-color 0.3s;
+    }
+
+    input[type="text"], input[type="password"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: var(--input-bg);
+        color: var(--text-color);
+    }
+
+    input[type="submit"] {
+        padding: 10px;
+        background-color: var(--button-bg);
+        color: var(--button-text);
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    input[type="submit"]:hover {
+        opacity: 0.9;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--link-color);
+        font-size: 0.9em;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* Toggle button styles */
+    .mode-switch {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 10px;
+        background-color: var(--button-bg);
+        color: var(--button-text);
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s, color 0.3s;
+    }
+</style>
+</head>
+<body>
+    <button class="mode-switch" onclick="toggleMode()">Switch Mode</button>
+
+    <div>
+        <form action="log" method="post">
+            <label for="userid">UserId:</label>
+            <input type="text" name="userid" id="userid">
+            
+            <label for="upw">UserPassword:</label>
+            <input type="password" name="upw" id="upw">
+            
+            <input type="submit" value="Login">
+            <a href="registration.html">New user?</a>
+        </form>
+    </div>
+
+<script>
+    // Check for saved mode preference in localStorage
+    const currentMode = localStorage.getItem('mode');
+    if (currentMode === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+
+    // Toggle between light and dark mode
+    function toggleMode() {
+        document.body.classList.toggle('dark-mode');
+        
+        // Save preference in localStorage
+        const mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+        localStorage.setItem('mode', mode);
+    }
+</script>
+</body>
+</html>

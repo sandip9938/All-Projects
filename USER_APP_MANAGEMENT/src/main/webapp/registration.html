@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Form</title>
+<style>
+    /* Default Light Mode Colors */
+    :root {
+        --background-color: #ffffff;
+        --text-color: #000000;
+        --input-bg-color: #f5f5f5;
+        --button-bg-color: #007BFF;
+        --button-text-color: #ffffff;
+        --link-color: #007BFF;
+    }
+
+    /* Dark Mode Colors */
+    .dark-mode {
+        --background-color: #121212;
+        --text-color: #ffffff;
+        --input-bg-color: #333333;
+        --button-bg-color: #6200ea;
+        --button-text-color: #ffffff;
+        --link-color: #BB86FC;
+    }
+
+    /* General Styles */
+    body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        background-color: var(--background-color);
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        transition: background-color 0.3s ease;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: var(--input-bg-color);
+        color: var(--text-color);
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    input[type="submit"] {
+        padding: 10px;
+        background-color: var(--button-bg-color);
+        color: var(--button-text-color);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+        opacity: 0.9;
+    }
+
+    /* Mode Toggle Button */
+    .mode-toggle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 8px 12px;
+        background-color: var(--button-bg-color);
+        color: var(--button-text-color);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+</style>
+</head>
+<body>
+    <!-- Dark/Light Mode Toggle Button -->
+    <button class="mode-toggle" onclick="toggleMode()">Switch Mode</button>
+
+    <!-- Registration Form -->
+    <div>
+        <form action="reg" method="post">
+            <label>User Id:</label>
+            <input type="text" name="userid">
+
+            <label>User Password:</label>
+            <input type="password" name="upw">
+
+            <label>User First Name:</label>
+            <input type="text" name="ufn">
+
+            <label>User Last Name:</label>
+            <input type="text" name="uln">
+
+            <label>User Address:</label>
+            <input type="text" name="uad">
+
+            <label>User Mail ID:</label>
+            <input type="email" name="umid">
+
+            <label>User Phone No:</label>
+            <input type="number" name="uno">
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+<script>
+    // Check for saved mode preference
+    const savedMode = localStorage.getItem('color-mode');
+    if (savedMode === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+
+    // Toggle between dark and light mode
+    function toggleMode() {
+        document.body.classList.toggle('dark-mode');
+        const currentMode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+        localStorage.setItem('color-mode', currentMode);
+    }
+</script>
+</body>
+</html>

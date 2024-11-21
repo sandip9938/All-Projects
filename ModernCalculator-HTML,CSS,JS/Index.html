@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Calculator</title>
+    <style>
+      :root {
+        --bg-color-dark: #1c1c1e;
+        --bg-color-light: #f9f9f9;
+        --text-color-dark: #f3f3f3;
+        --text-color-light: #333;
+        --button-bg-dark: linear-gradient(145deg, #4facfe, #00f2fe);
+        --button-bg-light: linear-gradient(145deg, #86a8e7, #91eae4);
+        --input-bg-dark: #333;
+        --input-bg-light: #e9e9e9;
+        --button-shadow-dark: rgba(0, 0, 0, 0.2);
+        --button-shadow-light: rgba(0, 0, 0, 0.1);
+      }
+
+      body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: var(--bg-color-dark);
+        color: var(--text-color-dark);
+        transition: all 0.3s ease;
+      }
+
+      .container {
+        background-color: var(--bg-color-dark);
+        color: var(--text-color-dark);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        max-width: 400px;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .row {
+        margin: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .row button {
+        flex: 1;
+        margin: 5px;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        color: #fff;
+        background: var(--button-bg-dark);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px var(--button-shadow-dark);
+      }
+
+      .row button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .row input {
+        margin: 10px 0;
+        border-radius: 10px;
+        border: none;
+        background-color: var(--input-bg-dark);
+        width: 100%;
+        height: 50px;
+        font-size: 24px;
+        text-align: right;
+        color: #fff;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
+        padding: 0 10px;
+      }
+
+      /* Enhanced Theme Toggle Button */
+      .theme-toggle {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 30px;
+        margin: 20px;
+      }
+
+      .theme-toggle input {
+        display: none;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--text-color-dark);
+        transition: all 0.4s ease;
+        border-radius: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        background-color: var(--bg-color-light);
+        border-radius: 50%;
+        bottom: 5px;
+        left: 5px;
+        transition: all 0.4s ease;
+      }
+
+      input:checked + .slider {
+        background-color: var(--text-color-light);
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(30px);
+        background-color: var(--bg-color-dark);
+      }
+
+      footer {
+        margin-top: auto;
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        color: var(--text-color-dark);
+        background-color: var(--bg-color-dark);
+        transition: all 0.3s ease;
+      }
+
+      /* Light Mode Specific Styles */
+      .light-mode {
+        background-color: var(--bg-color-light);
+        color: var(--text-color-light);
+      }
+
+      .light-mode .container {
+        background-color: var(--bg-color-light);
+        color: var(--text-color-light);
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .light-mode .row button {
+        background: var(--button-bg-light);
+        box-shadow: 0 4px 6px var(--button-shadow-light);
+      }
+
+      .light-mode .row input {
+        background-color: var(--input-bg-light);
+        color: var(--text-color-light);
+      }
+
+      .light-mode footer {
+        background-color: var(--bg-color-light);
+        color: var(--text-color-light);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="center">
+        <h1>Modern Calculator</h1>
+        <!-- Toggle Button -->
+        <label class="theme-toggle">
+          <input type="checkbox" id="toggleMode" onclick="toggleTheme()" />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <!-- Display row -->
+      <div class="row">
+        <input class="input" type="text" placeholder="0" disabled />
+      </div>
+
+      <!-- Functional Buttons Row -->
+      <div class="row">
+        <button class="button">C</button>
+        <button class="button">%</button>
+        <button class="button">m+</button>
+        <button class="button">/</button>
+      </div>
+
+      <!-- Numbers and Operators -->
+      <div class="row">
+        <button class="button">7</button>
+        <button class="button">8</button>
+        <button class="button">9</button>
+        <button class="button">*</button>
+      </div>
+      <div class="row">
+        <button class="button">4</button>
+        <button class="button">5</button>
+        <button class="button">6</button>
+        <button class="button">-</button>
+      </div>
+      <div class="row">
+        <button class="button">1</button>
+        <button class="button">2</button>
+        <button class="button">3</button>
+        <button class="button">+</button>
+      </div>
+      <div class="row">
+        <button class="button">0</button>
+        <button class="button">.</button>
+        <button class="button" style="flex: 2;">=</button>
+      </div>
+    </div>
+    <footer>
+      <p>Designed with ❤️ by Sandip...</p>
+    </footer>
+    <script>
+ // Function to handle theme switching
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle('light-mode');
+    }
+
+    // Function to handle button clicks
+    let currentInput = '';
+
+    function handleButtonClick(value) {
+      if (value === 'C') {
+        currentInput = ''; // Clear the input
+      } else if (value === '=') {
+        try {
+          currentInput = eval(currentInput).toString(); // Evaluate the expression
+        } catch (error) {
+          currentInput = 'Error'; // If invalid expression, show error
+        }
+      } else if (value === 'm+') {
+        // Memory function - For now, it does nothing specific
+        // You can extend this functionality by saving a number in memory and recalling it.
+        currentInput = 'Memory+ not implemented';
+      } else {
+        currentInput += value; // Add button value to the input
+      }
+      
+      updateDisplay();
+    }
+
+    // Update the display of the calculator
+    function updateDisplay() {
+      const inputField = document.querySelector('.input');
+      inputField.value = currentInput || '0'; // Default to 0 if input is empty
+    }
+
+    // Attach event listeners to buttons
+    document.querySelectorAll('.button').forEach(button => {
+      button.addEventListener('click', (event) => {
+        const value = event.target.innerText;
+        handleButtonClick(value);
+      });
+    });
+
+    // Optional: You can also add keyboard support if you want
+    document.addEventListener('keydown', (event) => {
+      const key = event.key;
+      
+      if (key === 'Enter' || key === '=') {
+        handleButtonClick('=');
+      } else if (key === 'Backspace' || key === 'C') {
+        handleButtonClick('C');
+      } else if ('0123456789+-*/.%'.includes(key)) {
+        handleButtonClick(key);
+      }
+    });
+
+    </script>
+  </body>
+</html>

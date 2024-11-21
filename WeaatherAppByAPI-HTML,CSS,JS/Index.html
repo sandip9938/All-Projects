@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
+            margin-bottom: 30px;
+            color: #f39c12;  /* Changed header color to a golden yellow */
+        }
+
+        .weather-container {
+            background-color: #34495e;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .weather-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.6);
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1.2rem;
+            width: 80%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            text-align: center;
+            color: #fff;
+            background-color: #2c3e50;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border: none;
+            background-color: #1abc9c;
+            color: white;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        button:hover {
+            background-color: #16a085;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .weather-info {
+            margin-top: 20px;
+            color: #ecf0f1;
+        }
+
+        .temp {
+            font-size: 2.5rem;
+            color: #f39c12;  /* Changed temperature color to golden yellow */
+        }
+
+        .description {
+            font-size: 1.2rem;
+            color: #8e44ad;  /* Changed description color to a vibrant purple */
+        }
+
+        .humidity {
+            font-size: 1.2rem;
+            color: #3498db;  /* Changed humidity color to blue */
+        }
+
+        select {
+            padding: 10px;
+            font-size: 1.2rem;
+            width: 80%;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #2c3e50;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Weather App</h1>
+
+    <div class="weather-container">
+        <input type="text" id="cityInput" placeholder="Enter city name...">
+        <button onclick="getWeather()">Get Weather</button>
+
+        <!-- Temperature Unit Selector -->
+        <select id="unitSelect">
+            <option value="metric">Celsius (°C)</option>
+            <option value="imperial">Fahrenheit (°F)</option>
+        </select>
+
+        <div class="weather-info" id="weatherInfo">
+            <!-- Weather information will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        async function getWeather() {
+            const city = document.getElementById("cityInput").value;
+            const unit = document.getElementById("unitSelect").value; // Get selected unit (metric or imperial)
+            const apiKey = "c5ba0adb932bff5e86972bb53e4811d9"; // Replace with your OpenWeatherMap API key
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.cod === '404') {
+                    alert("City not found!");
+                    return;
+                }
+
+                const weatherInfo = `
+                    <div class="temp">${data.main.temp}°</div>
+                    <div class="description">${data.weather[0].description}</div>
+                    <div class="humidity">Humidity: ${data.main.humidity}%</div>
+                `;
+
+                document.getElementById("weatherInfo").innerHTML = weatherInfo;
+
+                // Set a timeout to refresh the page after displaying weather info
+                setTimeout(function() {
+                    location.reload();  // This will reload the page after 5 seconds
+                }, 5000); // Refresh after 5 seconds
+
+            } catch (error) {
+                alert("Error fetching weather data.");
+            }
+        }
+    </script>
+
+</body>
+</html>

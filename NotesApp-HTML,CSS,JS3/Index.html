@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>World Clock</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-color-dark: #2c3e50;
+        --bg-color-light: #ecf0f1;
+        --text-color-dark: #ecf0f1;
+        --text-color-light: #2c3e50;
+        --button-bg-dark: #3498db;
+        --button-bg-light: #1abc9c;
+        --shadow-dark: rgba(0, 0, 0, 0.5);
+        --shadow-light: rgba(0, 0, 0, 0.1);
+      }
+
+      body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(45deg, #f39c12, #e74c3c, #9b59b6, #3498db);
+        background-size: 400% 400%;
+        animation: gradientAnimation 10s ease infinite;
+        color: var(--text-color-dark);
+        transition: all 0.3s ease;
+      }
+
+      @keyframes gradientAnimation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 36px;
+        margin-bottom: 40px;
+        color: var(--text-color-light);
+      }
+
+      .time-section {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .clock {
+        background-color: var(--bg-color-dark);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        color: var(--text-color-dark);
+        box-shadow: 0 4px 12px var(--shadow-dark);
+        margin: 10px;
+        width: 250px;
+        transition: all 0.3s ease;
+      }
+
+      .clock h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: var(--text-color-light);
+      }
+
+      .time {
+        font-size: 32px;
+        font-weight: bold;
+      }
+
+      .theme-toggle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .theme-toggle input {
+        display: none;
+      }
+
+      .slider {
+        position: relative;
+        cursor: pointer;
+        width: 60px;
+        height: 30px;
+        background-color: var(--bg-color-light);
+        border-radius: 30px;
+        transition: all 0.4s ease;
+      }
+
+      .slider:before {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: var(--bg-color-dark);
+        border-radius: 50%;
+        transition: all 0.4s ease;
+        left: 5px;
+        top: 5px;
+      }
+
+      input:checked + .slider {
+        background-color: var(--button-bg-light);
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(30px);
+        background-color: var(--bg-color-light);
+      }
+
+      footer {
+        position: absolute;
+        bottom: 10px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--text-color-dark);
+      }
+
+      body.light-mode {
+        background-color: var(--bg-color-light);
+        color: var(--text-color-light);
+      }
+
+      body.light-mode .clock {
+        background-color: var(--bg-color-light);
+        color: var(--text-color-light);
+        box-shadow: 0 4px 12px var(--shadow-light);
+      }
+
+      body.light-mode .theme-toggle .slider {
+        background-color: var(--button-bg-light);
+      }
+
+      body.light-mode .theme-toggle .slider:before {
+        background-color: var(--bg-color-light);
+      }
+
+      body.light-mode footer {
+        color: var(--text-color-light);
+      }
+
+      /* Dark mode adjustments */
+      body.dark-mode {
+        background-color: var(--bg-color-dark);
+        color: var(--text-color-dark);
+      }
+
+      body.dark-mode .clock {
+        background-color: var(--bg-color-dark);
+        color: var(--text-color-dark);
+        box-shadow: 0 4px 12px var(--shadow-dark);
+      }
+
+      body.dark-mode footer {
+        color: var(--text-color-dark);
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>World Clock</h1>
+      <div class="time-section">
+        <div id="clock-India" class="clock">
+          <h2>India Time (IST)</h2>
+          <div id="india-time" class="time">Loading...</div>
+        </div>
+        <div id="clock-NewYork" class="clock">
+          <h2>New York Time (EST)</h2>
+          <div id="new-york-time" class="time">Loading...</div>
+        </div>
+        <div id="clock-Tokyo" class="clock">
+          <h2>Tokyo Time (JST)</h2>
+          <div id="tokyo-time" class="time">Loading...</div>
+        </div>
+      </div>
+      <label class="theme-toggle">
+        <input type="checkbox" id="toggleMode" onclick="toggleTheme()" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <footer>
+      <p>Designed with ❤️ by You</p>
+    </footer>
+
+    <script>
+      // Function to toggle theme between dark and light
+      function toggleTheme() {
+        const body = document.body;
+        body.classList.toggle('light-mode');
+        body.classList.toggle('dark-mode');
+      }
+
+      // Function to update the time on the clocks
+      function updateTime() {
+        const indiaTime = new Date().toLocaleString('en-IN', {
+          timeZone: 'Asia/Kolkata',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        });
+        document.getElementById('india-time').textContent = indiaTime;
+
+        const newYorkTime = new Date().toLocaleString('en-US', {
+          timeZone: 'America/New_York',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        });
+        document.getElementById('new-york-time').textContent = newYorkTime;
+
+        const tokyoTime = new Date().toLocaleString('en-JP', {
+          timeZone: 'Asia/Tokyo',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        });
+        document.getElementById('tokyo-time').textContent = tokyoTime;
+      }
+
+      // Call updateTime function every second to keep time updated
+      setInterval(updateTime, 1000);
+
+      // Initialize the clocks when the page loads
+      window.onload = updateTime;
+    </script>
+  </body>
+</html>

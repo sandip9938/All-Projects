@@ -1,6 +1,6 @@
-<%@page import="com.sp.bean.EmployeeBean"%>
-<%@page import="com.sp.bean.AdminBean"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page import="com.sp.bean.EmployeeBean" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(to right, #434343, #000000); /* Gradient background */
+            background: linear-gradient(to right, #434343, #000000);
             color: rgb(240, 238, 234);
-            font-family: 'Roboto', sans-serif; /* Modern font */
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 20px;
         }
@@ -31,14 +31,14 @@
             border: 2px solid rgb(182, 182, 223);
             padding: 10px 20px;
             font-size: 18px;
-            border-radius: 5px; /* Rounded corners */
-            transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         button:hover {
             background-color: rgb(182, 182, 223);
-            color: #212121; /* Dark text on hover */
-            transform: scale(1.05); /* Slightly enlarge on hover */
+            color: #212121;
+            transform: scale(1.05);
         }
 
         table {
@@ -63,61 +63,66 @@
         }
 
         tr:nth-child(even) {
-            background-color: #4f4f4f; /* Alternate row color */
+            background-color: #4f4f4f;
         }
 
         tr:hover {
-            background-color: rgba(182, 182, 223, 0.2); /* Highlight row on hover */
+            background-color: rgba(182, 182, 223, 0.2);
         }
 
         @media (max-width: 600px) {
             button {
-                width: 100%; /* Full width buttons on small screens */
+                width: 100%;
                 font-size: 16px;
             }
 
             th, td {
-                font-size: 14px; /* Smaller text on small screens */
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
 <%
-EmployeeBean eb = (EmployeeBean) session.getAttribute("ebean");
+    // Retrieve the EmployeeBean from the session
+    EmployeeBean eb = (EmployeeBean) session.getAttribute("ebean");
 
-if (eb != null) {
+    // Check if the EmployeeBean object is present
+    if (eb != null) {
 %>
-    <h2>Welcome Employee: <%= eb.getEname() %></h2>
+        <h2>Welcome Employee: <%= eb.getEname() %></h2>
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Designation</th>
-            <th>Basic Salary</th>
-            <th>HRA</th>
-            <th>DA</th>
-            <th>Total Salary</th>
-        </tr>
-        <tr>
-            <td><%= eb.getEid() %></td>
-            <td><%= eb.getEname() %></td>
-            <td><%= eb.getEdesg() %></td>
-            <td><%= eb.getEbsal() %></td>
-            <td><%= eb.getEhra() %></td>
-            <td><%= eb.getEda() %></td>
-            <td><%= eb.getEtsal() %></td>
-        </tr>
-    </table>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Designation</th>
+                <th>Basic Salary</th>
+                <th>HRA</th>
+                <th>DA</th>
+                <th>Total Salary</th>
+            </tr>
+            <tr>
+                <td><%= eb.getEid() %></td>
+                <td><%= eb.getEname() %></td>
+                <td><%= eb.getEdesg() %></td>
+                <td><%= eb.getEbsal() %></td>
+                <td><%= eb.getEhra() %></td>
+                <td><%= eb.getEda() %></td>
+                <td><%= eb.getEtsal() %></td>
+            </tr>
+        </table>
 <%
-} else {
-    out.println("<p style='text-align:center;'>Employee session not found. Please log in again.</p>");
-}
+    } else {
+        // If EmployeeBean is not found, display a message
+        out.println("<p style='text-align:center;'>Employee session not found. Please log in again.</p>");
+    }
 %>
 
 <div style="text-align:center;">
-    <a href="logout"><button>Log Out</button></a>
+    <!-- Proper logout link to invalidate the session -->
+    <a href="<%= request.getContextPath() %>/logout"><button>Log Out</button></a>
 </div>
+
 </body>
 </html>

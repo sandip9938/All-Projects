@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Processing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input, button {
+            margin-top: 10px;
+            padding: 8px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>File Processing Application</h2>
+        
+        <!-- File Upload Form -->
+        <form action="./upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <input type="number" name="startRow" value="1" placeholder="Start Row">
+            <input type="number" name="endRow" value="100" placeholder="End Row">
+            <button type="submit">Upload File</button>
+        </form>
+        
+        <!-- XML to JSON Conversion Form -->
+        <form action="./convert" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" required>
+    <button type="submit">Convert to JSON</button>
+</form>
+
+        
+        <!-- Get Processed File Form -->
+<!--       <form action="./download" method="get"> -->
+<!--     <input type="text" name="fileId" placeholder="Enter File ID or Name" required> -->
+<!--     <button type="submit">Get Processed File</button> -->
+<!-- </form> -->
+
+    
+    
+</body>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log("JavaScript Loaded Successfully");
+        
+        document.querySelectorAll("button").forEach(button => {
+            button.addEventListener("click", () => {
+                alert("Button clicked!");
+            });
+        });
+    });
+</script>
+</html>

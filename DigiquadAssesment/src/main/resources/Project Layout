@@ -1,0 +1,28 @@
+
+------------------------Project Structure----------------------------
+
+
+file-processing-app/
+│── src/
+│   ├── main/
+│   │   ├── java/com/sp/
+│   │   │   ├── controller/
+│   │   │   │   ├── FileProcessingController.java
+│   │   │   ├── service/
+│   │   │   │   ├── FileProcessingService.java
+│   │   │   │   ├── XmlToJsonConverterService.java
+│   │   │   ├── config/
+│   │   │   │   ├── AppConfig.java
+│   │   │   |
+│   │   │   │   
+│   │   │   ├── FileProcessingApplication.java
+│   │   ├── resources/
+│   │   │   ├── templates/
+│   │   │   │   ├── home.html
+│   │   │   │   ├── result.html
+│   │   │   │   ├── error.html
+│   │   │   ├── application.properties
+│   │   │   ├── static/
+│   │   │   │   ├── style.css
+│   │   │   │   ├── script.js
+│── pom.xml

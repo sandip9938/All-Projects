@@ -30,6 +30,8 @@ public class AuthController {
 		user.setEmail(signUpRequest.getEmail());
 		user.setFullName(signUpRequest.getFullName());
 		User savedUser = userRepository.save(user);
+		
+		
 		return ResponseEntity.ok(savedUser);
 	}
 }
